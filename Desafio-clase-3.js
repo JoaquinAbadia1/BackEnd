@@ -10,18 +10,18 @@ class ProductManager {
         this.id = id
     }
     addProduct(product){
-        
+        product.id = Math.random().toString(16)
         if(this.tittle == '' || this.description== '' || this.price== '' || this.tumbnail =='' || this.code== '' || this.stock== '' || this.id== ''){
             return ('Todos los campos son requeridos')
+        }else if(product.code === this.products.code) {
+            return ('ya esta agregado')
         }
         
         this.products.push(product)
+        return this.products
     }
     getProduct(product){
         return this.products
-    }
-    randomId(){
-        Math.random()
     }
     getProductById(id){
         for (const elements of this.products) {
@@ -35,7 +35,5 @@ class ProductManager {
 }
 
 const productManager = new ProductManager();
-
 console.log(productManager.addProduct({tittle:'hola', description:'producto',price:9999,tumbnail:'https://img.png',code:09876657,stock:28}))
-console.log(productManager.addProduct({tittle:'hola', description:'producto',price:9999,tumbnail:'https://img.png',code:09876657,stock:28}))
-console.log(productManager.getProduct())    
+console.log(productManager.getProduct())
